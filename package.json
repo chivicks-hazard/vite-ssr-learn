@@ -5,13 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "node server.js",
-    "build": "npm run build:client && npm run build:server",
+    "build": "npm run build:client && npm run build:server && node -e \"import fs from 'node:fs'; fs.renameSync('dist/client/index.html', 'dist/client/template.html')\" --input-type=module",
     "build:client": "vite build --outDir dist/client",
     "build:server": "vite build --ssr src/entry-server.jsx --outDir dist/server",
     "lint": "eslint .",
     "preview": "cross-env NODE_ENV=production node server.js"
   },
   "dependencies": {
+    "@vercel/node": "^5.6.9",
     "compression": "^1.8.1",
     "express": "^5.2.1",
     "react": "^19.2.0",
@@ -31,4 +32,3 @@
     "vite": "^7.3.1"
   }
 }
-
